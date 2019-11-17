@@ -1,0 +1,31 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "host.go",
+        "parse.go",
+        "transport.go",
+    ],
+    importpath = "github.com/coredns/coredns/plugin/pkg/parse",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//plugin/pkg/transport:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "host_test.go",
+        "parse_test.go",
+        "transport_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//plugin/pkg/transport:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+    ],
+)

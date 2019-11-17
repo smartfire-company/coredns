@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "pprof.go",
+        "setup.go",
+    ],
+    importpath = "github.com/coredns/coredns/plugin/pprof",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//plugin:go_default_library",
+        "//plugin/pkg/log:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "log_test.go",
+        "setup_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//plugin/pkg/log:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+    ],
+)

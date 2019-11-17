@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "run.go",
+        "version.go",
+    ],
+    importpath = "github.com/coredns/coredns/coremain",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//core/dnsserver:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+    ],
+)

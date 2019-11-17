@@ -1,0 +1,39 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "autopath.go",
+        "erratic.go",
+        "ready.go",
+        "setup.go",
+        "xfr.go",
+    ],
+    importpath = "github.com/coredns/coredns/plugin/erratic",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//core/dnsserver:go_default_library",
+        "//plugin:go_default_library",
+        "//plugin/test:go_default_library",
+        "//request:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "erratic_test.go",
+        "log_test.go",
+        "setup_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//plugin/pkg/dnstest:go_default_library",
+        "//plugin/pkg/log:go_default_library",
+        "//plugin/test:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)

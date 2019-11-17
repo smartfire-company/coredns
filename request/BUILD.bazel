@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "edns0.go",
+        "request.go",
+        "writer.go",
+    ],
+    importpath = "github.com/coredns/coredns/request",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//plugin/pkg/edns:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["request_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//plugin/test:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)

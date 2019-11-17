@@ -1,0 +1,60 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "address.go",
+        "config.go",
+        "https.go",
+        "onstartup.go",
+        "register.go",
+        "server.go",
+        "server_grpc.go",
+        "server_https.go",
+        "server_tls.go",
+        "zdirectives.go",
+    ],
+    importpath = "github.com/coredns/coredns/core/dnsserver",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pb:go_default_library",
+        "//plugin:go_default_library",
+        "//plugin/metrics/vars:go_default_library",
+        "//plugin/pkg/dnsutil:go_default_library",
+        "//plugin/pkg/doh:go_default_library",
+        "//plugin/pkg/edns:go_default_library",
+        "//plugin/pkg/log:go_default_library",
+        "//plugin/pkg/nonwriter:go_default_library",
+        "//plugin/pkg/parse:go_default_library",
+        "//plugin/pkg/rcode:go_default_library",
+        "//plugin/pkg/response:go_default_library",
+        "//plugin/pkg/reuseport:go_default_library",
+        "//plugin/pkg/trace:go_default_library",
+        "//plugin/pkg/transport:go_default_library",
+        "//request:go_default_library",
+        "@com_github_caddyserver_caddy//:go_default_library",
+        "@com_github_caddyserver_caddy//caddyfile:go_default_library",
+        "@com_github_grpc_ecosystem_grpc_opentracing//go/otgrpc:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+        "@com_github_opentracing_opentracing_go//:go_default_library",
+        "@org_golang_google_grpc//:go_default_library",
+        "@org_golang_google_grpc//peer:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "address_test.go",
+        "log_test.go",
+        "register_test.go",
+        "server_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//plugin:go_default_library",
+        "//plugin/pkg/log:go_default_library",
+        "//plugin/test:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)

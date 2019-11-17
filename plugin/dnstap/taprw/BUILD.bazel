@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["writer.go"],
+    importpath = "github.com/coredns/coredns/plugin/dnstap/taprw",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//plugin/dnstap/msg:go_default_library",
+        "@com_github_dnstap_golang_dnstap//:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["writer_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//plugin/dnstap/test:go_default_library",
+        "//plugin/test:go_default_library",
+        "@com_github_miekg_dns//:go_default_library",
+    ],
+)
