@@ -13,6 +13,7 @@ require (
 	github.com/aws/aws-sdk-go v1.25.48
 	github.com/caddyserver/caddy v1.0.4
 	github.com/coredns/federation v0.0.0-20190818181423-e032b096babe
+	github.com/coredns/unbound v0.0.6
 	github.com/coreos/go-systemd v0.0.0-20190212144455-93d5ec2c7f76 // indirect
 	github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f // indirect
 	github.com/dnstap/golang-dnstap v0.0.0-20170829151710-2cf77a2b5e11
@@ -26,6 +27,7 @@ require (
 	github.com/infobloxopen/go-trees v0.0.0-20190313150506-2af4e13f9062
 	github.com/matttproud/golang_protobuf_extensions v1.0.1
 	github.com/miekg/dns v1.1.24
+	github.com/miekg/unbound v0.0.0-20180419064740-e2b53b2dbcba // indirect
 	github.com/opentracing-contrib/go-observer v0.0.0-20170622124052-a52f23424492 // indirect
 	github.com/opentracing/opentracing-go v1.1.0
 	github.com/openzipkin-contrib/zipkin-go-opentracing v0.3.5
